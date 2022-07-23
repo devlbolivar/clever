@@ -1,24 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
-import CssBaseline from "@mui/material/CssBaseline";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import List from "@mui/material/List";
-import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import Badge from "@mui/material/Badge";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import IconButton from "@mui/material/IconButton";
-import * as Icons from "@mui/icons-material/";
-import LogoutIcon from "@mui/icons-material/Logout";
 
-const drawerWidth = 240;
+import Toolbar from "@mui/material/Toolbar";
+
+import Typography from "@mui/material/Typography";
 
 export default function Home() {
   return (

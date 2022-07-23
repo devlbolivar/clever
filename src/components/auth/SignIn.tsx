@@ -26,7 +26,7 @@ function Copyright(props: props) {
     >
       {"Copyright © "}
       <Link color="inherit" href="#">
-        CleverClass
+        Clever
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}

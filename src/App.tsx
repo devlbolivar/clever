@@ -1,33 +1,25 @@
-import { useState } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/layout/Layout";
-import Matricula from "./components/matricula/Matricula";
-import Classbook from "./components/classbook/Classbook";
-import Records from "./components/records/Records";
 import "./App.css";
 import SignIn from "./components/auth/SignIn";
-import Home from "./components/dashboard/Home";
+import Home from "./components/home/Home";
+import Calendar from "./components/calendar/Calendar";
+import Games from "./components/games/Games";
+import Charts from "./components/charts/Charts";
 
 function App() {
-  const [user, setUser] = useState<object | null>(null);
-
-  const handleLogin = () => setUser({ id: "1", name: "robin" });
-  const handleLogout = () => setUser(null);
   return (
-    <div className="App">
-      {user ? (
-        <button onClick={handleLogout}>Sign Out</button>
-      ) : (
-        <button onClick={handleLogin}>Sign In</button>
-      )}
+    <BrowserRouter>
       <Routes>
-        <Route index element={<Layout />} />
-        <Route path="/layout" element={<Layout />} />
-        <Route path="matricula" element={<Matricula />} />
-        <Route path="classbook" element={<Classbook />} />
-        <Route path="records" element={<Records />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/*" element={<Layout />}>
+          <Route path="home" element={<Home />} />
+          <Route path="calendar" element={<Calendar />} />
+          <Route path="games" element={<Games />} />
+          <Route path="charts" element={<Charts />} />
+        </Route>
       </Routes>
-    </div>
+    </BrowserRouter>
   );
 }
 
