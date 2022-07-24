@@ -1,0 +1,15 @@
+.navigation{
+	background: #fff;
+    display: flex;	
+	justify-content: space-between;
+	width: 100%;
+	font-family: sans-serif;
+	border-top: 1px solid #e6e6e6;
+	position: relative;
+	padding: 1rem 0;
+}
+
+.monthYear{
+	font-size: 1.3rem;
+	font-weight: 600;
+}

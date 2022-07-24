@@ -22,7 +22,7 @@ const GridCalendar = ({ date, actualDate }: props) => {
 
   const dates = [];
 
-  for (let i = 0; i < 42; i++) {
+  for (let i = 0; i < 35; i++) {
     const date = new Date(startDate);
     dates.push({ date, events: [] });
     startDate.setDate(date.getDate() + 1);
