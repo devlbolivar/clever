@@ -1,16 +1,19 @@
-import classes from "./navigation.module.css";
+import { useState } from "react";
 
-import ListItemButton from "@mui/material/ListItemButton";
-import Button from "@mui/material/Button";
-import ListItemIcon from "@mui/material/ListItemIcon";
+import classes from "./navigation.module.css";
 import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
+import IconButton from "@mui/material/IconButton";
+import Button from "@mui/material/Button";
+import ButtonGroup from "@mui/material/ButtonGroup";
 
 interface props {
   date: Date;
+  currentDate: Date;
+  setDate: React.Dispatch<React.SetStateAction<Date>>;
 }
 
-const Navigation = ({ date }: props) => {
+const Navigation = ({ date, currentDate, setDate }: props) => {
   const months = [
     "Ene",
     "Feb",
@@ -26,25 +29,55 @@ const Navigation = ({ date }: props) => {
     "Dic",
   ];
 
+  const [todayIsDisabled, setTodayIsDisabled] = useState(true);
+
+  const handleOnBackward = () => {
+    const newDate = new Date(date);
+    newDate.setMonth(newDate.getMonth() - 1);
+    setDate(newDate);
+  };
+
+  const handleOnForward = () => {
+    const newDate = new Date(date);
+    newDate.setMonth(newDate.getMonth() + 1);
+    setDate(newDate);
+  };
+
+  const handleOnToday = () => {
+    const year = 2022;
+    const month = 7;
+    setDate(new Date(year, month - 1));
+  };
+
   return (
     <div className={classes.navigation}>
       <div className={classes.backwardForwardButtons}>
-        <ListItemIcon>
+        <IconButton onClick={handleOnBackward}>
           <SkipPreviousIcon />
-
+        </IconButton>
+        <IconButton onClick={handleOnForward}>
           <SkipNextIcon />
-        </ListItemIcon>
+        </IconButton>
+        <Button
+          variant="contained"
+          onClick={handleOnToday}
+          disabled={date.getMonth() === currentDate.getMonth()}
+        >
+          Hoy
+        </Button>
       </div>
       <div className={classes.monthYear}>
         {months[date.getMonth()]} {date.getFullYear()}
       </div>
       <div className={classes.calendarTypesButton}>
-        <Button variant="contained" size="small">
-          Mes
-        </Button>
-        <Button variant="contained" size="small">
-          Semana
-        </Button>
+        <ButtonGroup
+          variant="contained"
+          aria-label="outlined primary button group"
+        >
+          <Button>Mes</Button>
+          <Button>Semana</Button>
+          <Button>Día</Button>
+        </ButtonGroup>
       </div>
     </div>
   );

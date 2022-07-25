@@ -1,0 +1,23 @@
+.cell {
+	background: #fff;
+	width: 14.2857%;
+	height: 90px;
+	font-size: 0.7em;
+	box-shadow: 0 0px 1px #393939;
+}
+
+.current {
+	background: #e8eced;
+	color:#393939;
+}
+
+.otherMonth {
+	
+	color:rgb(220, 216, 216)
+}
+
+.current .date {
+	font-size: 1.1em;
+	font-weight: bold;
+	
+}

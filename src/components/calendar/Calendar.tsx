@@ -18,9 +18,13 @@ const Calendar = () => {
           sx={{ bgcolor: "#fff", height: "35rem", width: "50rem" }}
           className={classes.calendar}
         >
-          <Navigation date={date} />
+          <Navigation
+            date={date}
+            currentDate={selectedDate}
+            setDate={setDate}
+          />
           <HeaderCalendar />
-          <GridCalendar date={date} actualDate={date} />
+          <GridCalendar date={date} currentDate={date} />
         </Box>
       </Container>
     </>

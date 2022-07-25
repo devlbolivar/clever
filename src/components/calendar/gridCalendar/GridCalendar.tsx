@@ -2,7 +2,7 @@ import classes from "./gridCalendar.module.css";
 
 interface props {
   date: Date;
-  actualDate: Date;
+  currentDate: Date;
 }
 
 const toStartOfDay = (date: Date) => {
@@ -14,7 +14,7 @@ const toStartOfDay = (date: Date) => {
   return newDate;
 };
 
-const GridCalendar = ({ date, actualDate }: props) => {
+const GridCalendar = ({ date, currentDate: actualDate }: props) => {
   const currentDate = toStartOfDay(new Date());
 
   const startDate = new Date(date.getFullYear(), date.getMonth(), 1);
@@ -22,7 +22,7 @@ const GridCalendar = ({ date, actualDate }: props) => {
 
   const dates = [];
 
-  for (let i = 0; i < 35; i++) {
+  for (let i = 0; i < 42; i++) {
     const date = new Date(startDate);
     dates.push({ date, events: [] });
     startDate.setDate(date.getDate() + 1);
