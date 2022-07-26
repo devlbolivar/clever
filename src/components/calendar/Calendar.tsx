@@ -5,10 +5,12 @@ import GridCalendar from "./gridCalendar/GridCalendar";
 import HeaderCalendar from "./headerCalendar/HeaderCalendar";
 import Navigation from "./navigation/Navigation";
 
-const Calendar = () => {
-  const year = 2022;
-  const month = 7;
-  const selectedDate = new Date(year, month - 1);
+import { calendarProps } from "./types/types";
+
+const Calendar = (props: calendarProps) => {
+  const year = props.year || new Date().getFullYear();
+  const month = props.month || new Date().getMonth();
+  const selectedDate = new Date(year, month);
   const [date, setDate] = useState(selectedDate);
   return (
     <>
@@ -24,7 +26,7 @@ const Calendar = () => {
             setDate={setDate}
           />
           <HeaderCalendar />
-          <GridCalendar date={date} currentDate={date} />
+          <GridCalendar date={date} currentDate={date} events={props.events} />
         </Box>
       </Container>
     </>

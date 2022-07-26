@@ -1,9 +1,6 @@
+import GridCell from "./gridCell/GridCell";
+import { gridCalendarProps } from "../types/types";
 import classes from "./gridCalendar.module.css";
-
-interface props {
-  date: Date;
-  currentDate: Date;
-}
 
 const toStartOfDay = (date: Date) => {
   const newDate = new Date(date);
@@ -14,7 +11,7 @@ const toStartOfDay = (date: Date) => {
   return newDate;
 };
 
-const GridCalendar = ({ date, currentDate: actualDate }: props) => {
+const GridCalendar = ({ date, currentDate: actualDate }: gridCalendarProps) => {
   const currentDate = toStartOfDay(new Date());
 
   const startDate = new Date(date.getFullYear(), date.getMonth(), 1);
@@ -24,7 +21,7 @@ const GridCalendar = ({ date, currentDate: actualDate }: props) => {
 
   for (let i = 0; i < 42; i++) {
     const date = new Date(startDate);
-    dates.push({ date, events: [] });
+    dates.push({ date,  events: findEventsForDate(events, date) });
     startDate.setDate(date.getDate() + 1);
   }
 
@@ -32,18 +29,12 @@ const GridCalendar = ({ date, currentDate: actualDate }: props) => {
     <>
       {dates.map((date, index) => {
         return (
-          <div
+          <GridCell
             key={index}
-            className={`${classes.cell} 
-        ${date.date.getTime() === currentDate.getTime() ? classes.current : ""}
-        ${
-          date.date.getMonth() !== actualDate.getMonth()
-            ? classes.otherMonth
-            : ""
-        }`}
-          >
-            <div className={classes.date}>{date.date.getDate()}</div>
-          </div>
+            date={{ date.date, events }}
+            currentDate={currentDate}
+            actualDate={actualDate}
+          />
         );
       })}
     </>
