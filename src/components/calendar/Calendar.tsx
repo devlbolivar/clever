@@ -10,7 +10,7 @@ import { calendarProps } from "./types/types";
 const Calendar = (props: calendarProps) => {
   const year = props.year || new Date().getFullYear();
   const month = props.month || new Date().getMonth();
-  const selectedDate = new Date(year, month);
+  const selectedDate = new Date(year, month - 1);
   const [date, setDate] = useState(selectedDate);
   return (
     <>
@@ -26,7 +26,7 @@ const Calendar = (props: calendarProps) => {
             setDate={setDate}
           />
           <HeaderCalendar />
-          <GridCalendar date={date} currentDate={date} events={props.events} />
+          <GridCalendar date={date} actualDate={date} events={props.events} />
         </Box>
       </Container>
     </>

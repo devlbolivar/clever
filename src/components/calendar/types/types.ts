@@ -20,11 +20,11 @@ export interface gridCellProps {
 }
 
 export interface eventLabelProps {
-  event: events;
+	event: events;
 }
 
 export interface gridCalendarProps {
-  date: Date;
+	date: Date;
 	events: events[];
-  currentDate: Date;
+	actualDate: Date;
 }

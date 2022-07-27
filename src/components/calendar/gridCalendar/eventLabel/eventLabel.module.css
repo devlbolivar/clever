@@ -1,0 +1,15 @@
+.eventLabel {
+  background: #1f86ef;
+  color: white;
+  padding: 3px;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.eventLabel.holiday {
+  background: #3fb73f;
+}
+
+.eventLabel.busy {
+  background: #e7713c;
+}

@@ -10,7 +10,7 @@ import Charts from "./components/charts/Charts";
 const mockupEvents = [
   {
     id: 1,
-    name: "Holiday",
+    name: "Vacaciones",
     dateFrom: "2022-07-21T12:00",
     dateTo: "2022-07-22T08:45",
     description: "Example text",
@@ -18,7 +18,7 @@ const mockupEvents = [
   },
   {
     id: 2,
-    name: "Meeting",
+    name: "Reunión",
     dateFrom: "2022-07-24T09:45",
     dateTo: "2022-07-26T22:00",
     description: "Example text to be displayed on the calendar",
