@@ -1,9 +1,17 @@
+import { useContext } from "react";
 import GridCell from "./gridCell/GridCell";
 import { gridCalendarProps, events } from "../types/types";
 import { toStartOfDay } from "../utils";
 import classes from "./gridCalendar.module.css";
+import CalendarContext from "../store";
 
-const GridCalendar = ({ date, actualDate, events }: gridCalendarProps) => {
+const GridCalendar = ({
+  date,
+  actualDate,
+  setEventInModal,
+}: gridCalendarProps) => {
+  const stateCalendar = useContext(CalendarContext);
+  const { events } = stateCalendar;
   const currentDate = toStartOfDay(new Date().toString());
 
   const startDate = new Date(date.getFullYear(), date.getMonth(), 1);
@@ -11,15 +19,19 @@ const GridCalendar = ({ date, actualDate, events }: gridCalendarProps) => {
 
   const dates = [];
 
-  const findEventsForDate = (events: events[], date: Date) => {
+  const findEventsForDate = (events: events[] | null, date: Date) => {
     const dateTime = date.getTime();
 
-    return events.filter((event) => {
+    const eventsFounded = events?.filter((event) => {
       const eventFromTime = toStartOfDay(event.dateFrom).getTime();
       const eventToTime = toStartOfDay(event.dateTo).getTime();
 
       return dateTime >= eventFromTime && dateTime <= eventToTime;
     });
+    if (eventsFounded) {
+      return eventsFounded;
+    }
+    return [];
   };
 
   for (let i = 0; i < 42; i++) {

@@ -1,4 +1,11 @@
-export interface events {
+
+export interface calendar {
+	year?: number;
+	month?: number;
+	events: event[] | null;
+}
+
+export interface event {
 		id: number;
 		name: string;
 		dateFrom: string;
@@ -7,24 +14,19 @@ export interface events {
 		type: string;
 }
 
-export interface calendarProps {
-		year?: number;
-		month?: number;
-		events: events[];
-}
 
 export interface gridCellProps {
-		date: { date: Date; events: events[]; };
+		date: { date: Date; events: event[]; };
 		currentDate: Date;
 		actualDate: Date;
 }
 
 export interface eventLabelProps {
-	event: events;
+	event: event;
 }
 
 export interface gridCalendarProps {
 	date: Date;
-	events: events[];
 	actualDate: Date;
+	setEventInModal: React.Dispatch<React.SetStateAction<event | null>>;
 }
