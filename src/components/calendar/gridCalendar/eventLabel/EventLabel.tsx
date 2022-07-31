@@ -1,7 +1,7 @@
-import { eventLabelProps } from "../../types/types";
+import { eventLabel } from "../../utils/types";
 import classes from "./eventLabel.module.css";
 
-const EventLabel = (props: eventLabelProps) => {
+const EventLabel = (props: eventLabel) => {
   return (
     <div
       className={`${classes.eventLabel}  ${

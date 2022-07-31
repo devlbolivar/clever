@@ -33,10 +33,7 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/*" element={<Layout />}>
           <Route path="home" element={<Home />} />
-          <Route
-            path="calendar"
-            element={<Calendar year={2022} month={7} events={mockupEvents} />}
-          />
+          <Route path="calendar" element={<Calendar events={mockupEvents} />} />
           <Route path="games" element={<Games />} />
           <Route path="charts" element={<Charts />} />
         </Route>

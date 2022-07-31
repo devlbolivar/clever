@@ -1,8 +1,8 @@
 import EventLabel from "../eventLabel/EventLabel";
-import { gridCellProps } from "../../types/types";
+import { gridCell } from "../../utils/types";
 import classes from "./gridCell.module.css";
 
-const GridCell = (props: gridCellProps) => {
+const GridCell = (props: gridCell) => {
   return (
     <div
       className={`${classes.cell} 
@@ -12,7 +12,7 @@ const GridCell = (props: gridCellProps) => {
       : ""
   }
 	${
-    props.date.date.getMonth() !== props.actualDate.getMonth()
+    props.date.date.getMonth() !== props.displayedDate.getMonth()
       ? classes.otherMonth
       : ""
   }`}

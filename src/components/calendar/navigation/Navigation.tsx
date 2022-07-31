@@ -1,5 +1,6 @@
-import { useState } from "react";
-
+import { useContext, useEffect, useState } from "react";
+import CalendarCtx from "../context/calendarContext";
+import { MONTHS } from "../utils/constants";
 import classes from "./navigation.module.css";
 import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
@@ -7,67 +8,47 @@ import IconButton from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 
-interface props {
-  date: Date;
-  currentDate: Date;
-  setDate: React.Dispatch<React.SetStateAction<Date>>;
-}
+const Navigation = () => {
+  const {
+    onBackwardDate,
+    onForwardDate,
+    onCurrentDate,
+    displayedDate,
+    currentDate,
+  } = useContext(CalendarCtx);
 
-const Navigation = ({ date, currentDate, setDate }: props) => {
-  const months = [
-    "Ene",
-    "Feb",
-    "Mar",
-    "Abr",
-    "May",
-    "Jun",
-    "Jul",
-    "Ago",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dic",
-  ];
+  const [isCurrentDate, setIsCurrentDate] = useState(false);
 
-  const [todayIsDisabled, setTodayIsDisabled] = useState(true);
-
-  const handleOnBackward = () => {
-    const newDate = new Date(date);
-    newDate.setMonth(newDate.getMonth() - 1);
-    setDate(newDate);
-  };
-
-  const handleOnForward = () => {
-    const newDate = new Date(date);
-    newDate.setMonth(newDate.getMonth() + 1);
-    setDate(newDate);
-  };
-
-  const handleOnToday = () => {
-    const year = 2022;
-    const month = 7;
-    setDate(new Date(year, month - 1));
-  };
+  useEffect(() => {
+    if (
+      displayedDate.getFullYear() === currentDate.getFullYear() &&
+      displayedDate.getMonth() === currentDate.getMonth()
+    ) {
+      setIsCurrentDate(true);
+    } else {
+      setIsCurrentDate(false);
+    }
+  }, [displayedDate, currentDate]);
 
   return (
     <div className={classes.navigation}>
       <div className={classes.backwardForwardButtons}>
-        <IconButton onClick={handleOnBackward}>
+        <IconButton onClick={onBackwardDate}>
           <SkipPreviousIcon />
         </IconButton>
-        <IconButton onClick={handleOnForward}>
+        <IconButton onClick={onForwardDate}>
           <SkipNextIcon />
         </IconButton>
         <Button
           variant="contained"
-          onClick={handleOnToday}
-          disabled={date.getMonth() === currentDate.getMonth()}
+          onClick={onCurrentDate}
+          disabled={isCurrentDate}
         >
           Hoy
         </Button>
       </div>
       <div className={classes.monthYear}>
-        {months[date.getMonth()]} {date.getFullYear()}
+        {MONTHS[displayedDate.getMonth()]} {displayedDate.getFullYear()}
       </div>
       <div className={classes.calendarTypesButton}>
         <ButtonGroup
