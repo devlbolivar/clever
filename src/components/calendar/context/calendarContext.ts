@@ -1,5 +1,5 @@
 import {createContext} from 'react';
-import {state} from '../utils/types';
+import {state, event} from '../utils/types';
 
 
 const initialState:state = {
@@ -10,6 +10,10 @@ const initialState:state = {
     onForwardDate:()=> {},
     currentDate: new Date(),
     onCurrentDate: ()=> {},
+    eventDisplayed: undefined,
+    handleEventDisplayed:(event:event)=> {},
+    isModalOpen: false,
+    handleModalOpenClose: ()=> {},
 }
 
 const CalendarCtx = createContext(initialState);

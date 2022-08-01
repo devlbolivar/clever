@@ -3,12 +3,10 @@ import CalendarCtx from "./calendarContext";
 import { calendarProvider, event } from "../utils/types";
 
 const CalendarProvider: React.FC<calendarProvider> = (props) => {
-  //const [visibleDate, setVisibleDate] = useState(defaultDate);
-  //const [eventInModal, setEventInModal] = useState<event>([{}]);
-
   const [events, setEvents] = useState<event[] | []>(props.events || []);
-
+  const [eventDisplayed, setEventDisplayed] = useState<event>();
   const [displayedDate, setDisplayedDate] = useState(new Date());
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const currentDate = useMemo(() => new Date(), []);
 
   const handleOnBackward = () => {
@@ -35,6 +33,10 @@ const CalendarProvider: React.FC<calendarProvider> = (props) => {
     onForwardDate: handleOnForward,
     currentDate,
     onCurrentDate: handleOnToday,
+    eventDisplayed,
+    handleEventDisplayed: (event: event) => setEventDisplayed(event),
+    isModalOpen,
+    handleModalOpenClose: () => setIsModalOpen((prevModal) => !prevModal),
   };
 
   return (

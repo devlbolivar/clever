@@ -8,6 +8,10 @@ export interface state{
     onForwardDate:()=> void;
     currentDate: Date;
     onCurrentDate: ()=> void;
+	eventDisplayed:event | undefined;
+    handleEventDisplayed: (event:event)=> void;
+	isModalOpen: boolean;
+	handleModalOpenClose: ()=> void;
 }
 
 export interface calendar {
@@ -44,5 +48,12 @@ export interface gridCalendar{
 
 export interface calendarProvider{
 	events?: event[] ;
+	children: React.ReactNode;
+}
+
+export interface modal{
+	onClose: ()=>void;
+	title: string;
+	className: string;
 	children: React.ReactNode;
 }

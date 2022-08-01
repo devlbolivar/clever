@@ -4,9 +4,10 @@ import { gridCalendar, event } from "../utils/types";
 import { toStartOfDay } from "../utils";
 import classes from "./gridCalendar.module.css";
 import CalendarCtx from "../context/calendarContext";
+import Event from "../event/Event";
 
 const GridCalendar = () => {
-  const { displayedDate, events } = useContext(CalendarCtx);
+  const { displayedDate, events, isModalOpen } = useContext(CalendarCtx);
 
   const currentDate = toStartOfDay(new Date().toString());
 
@@ -42,6 +43,7 @@ const GridCalendar = () => {
 
   return (
     <>
+      {isModalOpen && <Event />}
       {dates.map((date, index) => {
         return (
           <GridCell

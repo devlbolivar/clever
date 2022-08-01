@@ -1,5 +1,6 @@
 import CalendarProvider from "./context/CalendarProvider";
-
+import { useContext } from "react";
+import CalendarCtx from "./context/calendarContext";
 import { calendar } from "./utils/types";
 
 import classes from "./calendar.module.css";
